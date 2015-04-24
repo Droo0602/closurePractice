@@ -10,12 +10,13 @@ var outer = function(){
 //Invoke outer saving the return value into another variable called 'inner'.
 
   //Code Here
+var inner = outer();
 
 //Once you do that, invoke inner.
 
   //Code Here
 
-
+inner();
 
 //Next problem
 
@@ -33,23 +34,33 @@ var callFriend = function(){
 //Do what you need to do in order to call your function and get 'Calling Jake at 435-215-9248' in your console.
 
   //Code Here
-
+var callJake = callFriend();
+callJake('435-215-9248');
 
 
 //Next Problem
-
 
 
 /*
   Write a function called makeCounter that makes the following code work properly.
 */
 
-  //Code Here
-  var count = makeCounter();
-  count() // 1
-  count() // 2
-  count() // 3
-  count() // 4
+//Code Here
+var makeCounter = function(){
+  var counter = 0;
+  function counting(){
+    counter++;
+    console.log(counter);
+    }
+  return counting;
+}
+
+
+var count = makeCounter();
+count() // 1
+count() // 2
+count() // 3
+count() // 4
 
 
 
@@ -64,6 +75,28 @@ var callFriend = function(){
   After the function has been called N number of times, console.log('STAHHP');
 */
 
+var callTime = function(callback, n){
 
+  count = 0;
+  function counting(){
+    if (count < n){
+      count++;
+      callback();
+      return;
+    }
+    console.log('STAHHP');
+  }
+  return counting;
+}
 
+var limited = callTime(cb,2);
 
+var cb = function(){
+  alert('hi');
+}
+
+//or
+
+var limited = callTime(function(){
+  alert('hi');
+},2);
